@@ -49,7 +49,7 @@ class Message implements JsonSerializable
         return $this->role->value;
     }
 
-    public function setRole(MessageRole|string $role): Message
+    public function setRole(MessageRole|string $role): static
     {
         if (!$role instanceof MessageRole) {
             $role = MessageRole::from($role);
@@ -70,7 +70,7 @@ class Message implements JsonSerializable
     /**
      * @param string|ContentBlockInterface|ContentBlockInterface[] $content
      */
-    public function setContents(string|ContentBlockInterface|array $content): Message
+    public function setContents(string|ContentBlockInterface|array $content): static
     {
         if (is_string($content)) {
             $this->contents = [new TextContent($content)];
@@ -86,7 +86,7 @@ class Message implements JsonSerializable
         return $this;
     }
 
-    public function addContent(ContentBlockInterface $block): Message
+    public function addContent(ContentBlockInterface $block): static
     {
         $this->contents[] = $block;
 
